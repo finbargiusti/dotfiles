@@ -1,4 +1,12 @@
 */*
+
+
+# nvim
 !nvim/*
 nvim/lazy-lock.json
+
+# scripts
+!scripts/*
+
+# annoyances
 **/.DS_Store
