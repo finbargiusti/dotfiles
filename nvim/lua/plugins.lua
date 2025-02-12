@@ -2,6 +2,7 @@ local pluginList = {
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
+
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
@@ -48,10 +49,12 @@ local pluginList = {
     end,
   },
 
+  -- removes background colouring from nvim
   {
     'tribela/vim-transparent'
   },
 
+  -- java LSP integration
   {
     'mfussenegger/nvim-jdtls',
   },
@@ -122,6 +125,7 @@ local pluginList = {
     }
   },
 
+  -- lazyvim integration
   { 'kdheepak/lazygit.nvim' },
 
   { 'vim-test/vim-test' },
@@ -129,10 +133,9 @@ local pluginList = {
   --   { 'rhysd/vim-clang-format' },
 
   -- { 'Exafunction/codeium.vim' },
+  -- Copilot 
   { 'github/copilot.vim' },
   { 'brettanomyces/nvim-editcommand' },
-
-  { 'mfussenegger/nvim-jdtls' },
 
   -- nvim-gdb
   { 'sakhnik/nvim-gdb' },
@@ -153,43 +156,6 @@ local pluginList = {
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   },
-
-  -- {
-  --     "benlubas/molten-nvim",
-  --     version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
-  --     build = ":UpdateRemotePlugins",
-  --     init = function()
-  --         -- this is an example, not a default. Please see the readme for more configuration options
-  --         vim.g.molten_output_win_max_height = 20
-  --     end,
-  -- },
-  -- {
-  --       -- see the image.nvim readme for more information about configuring this plugin
-  --       "3rd/image.nvim",
-  --       opts = {
-  --           backend = "kitty", -- whatever backend you would like to use
-  --           max_width = 100,
-  --           max_height = 12,
-  --           max_height_window_percentage = math.huge,
-  --           max_width_window_percentage = math.huge,
-  --           window_overlap_clear_enabled = true, -- toggles images when windows are overlapped
-  --           window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
-  --       },
-  --   }
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
-
-  -- NOTE: The import below automatically adds your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-  --    up-to-date with whatever is in the kickstart repo.
-  --
-  --    For additional inf ormation see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  --
-  --    An additional note is that if you only copied in the `init.lua`, you can just comment this line
-  --    to get rid of the warning telling you that there are not plugins in `lua/custom/plugins/`.
 }
 
 return pluginList
