@@ -9,4 +9,4 @@ nvim/lazy-lock.json
 !scripts/*
 
 # annoyances
-**/.DS_Store
+.DS_Store
