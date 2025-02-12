@@ -13,3 +13,17 @@ vim.keymap.set('n', '<leader>t', function() vim.cmd([[TestNearest]]) end)
 vim.keymap.set('n', '<leader>T', function() vim.cmd([[TestFile]]) end)
 vim.keymap.set('n', '<leader>a', function() vim.cmd([[TestSuite]]) end)
 
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+
+-- Open lazygit
+vim.keymap.set('n', '<leader>gg', function() vim.cmd([[LazyGit]]) end)
+
+-- Copies whole file to clipboard
+vim.keymap.set('n', '<leader>yy', function()
+  vim.cmd([[ %y+ ]])
+end)
+  
