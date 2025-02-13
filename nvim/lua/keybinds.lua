@@ -26,4 +26,6 @@ vim.keymap.set('n', '<leader>gg', function() vim.cmd([[LazyGit]]) end)
 vim.keymap.set('n', '<leader>yy', function()
   vim.cmd([[ %y+ ]])
 end)
-  
+
+-- copilot accept
+vim.api.nvim_set_keymap('i', '<C-/>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
