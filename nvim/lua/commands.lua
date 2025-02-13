@@ -18,4 +18,4 @@ vim.api.nvim_create_user_command('SafeAbort', function()
   vim.cmd('qa')
 end, {desc = 'Save all and quit'})
 
-vim.cmd('cnoreabbrev qq SafeAbord')
+vim.cmd('cnoreabbrev qq SafeAbort')
