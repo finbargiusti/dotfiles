@@ -19,3 +19,9 @@ vim.api.nvim_create_user_command('SafeAbort', function()
 end, {desc = 'Save all and quit'})
 
 vim.cmd('cnoreabbrev qq SafeAbort')
+
+vim.api.nvim_craete_user_command('EditVimRC', function()
+  vim.cmd('edit $MYVIMRC')
+end, {desc = 'Edit the init.vim file'})
+
+vim.cmd('cnoreabbrev evim EditVimRC')
