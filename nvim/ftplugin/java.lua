@@ -9,7 +9,7 @@ vim.o.expandtab = true
 
 local config = {
     cmd = {jdtls_bin},
-    root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+    root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw', '.project'}, { upward = true })[1]),
     on_attach = lsp_attach,
 }
 
