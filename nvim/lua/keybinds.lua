@@ -2,16 +2,16 @@
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Open the folder enclosing the current file.
-vim.keymap.set('n', '<leader>ed', ':EditDirectory<CR>', {desc = 'Open the directory of the current file'})
+vim.keymap.set('n', '<leader>ed', ':EditDirectory<CR>', { desc = 'Open the directory of the current file' })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Vim-test keybinds
-vim.keymap.set('n', '<leader>t', function() vim.cmd([[TestNearest]]) end)
-vim.keymap.set('n', '<leader>T', function() vim.cmd([[TestFile]]) end)
-vim.keymap.set('n', '<leader>a', function() vim.cmd([[TestSuite]]) end)
+-- -- Vim-test keybinds
+-- vim.keymap.set('n', '<leader>t', function() vim.cmd([[TestNearest]]) end)
+-- vim.keymap.set('n', '<leader>T', function() vim.cmd([[TestFile]]) end)
+-- vim.keymap.set('n', '<leader>a', function() vim.cmd([[TestSuite]]) end)
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
@@ -27,5 +27,23 @@ vim.keymap.set('n', '<leader>yy', function()
   vim.cmd([[ %y+ ]])
 end)
 
+-- switch back to previous buffer
+
+vim.api.nvim_set_keymap('n', '<leader><BS>', ":bprevious<CR>", {desc = "Go to previous buffer"})
+
+local copilot_enabled = true -- this sucks! why is this on by default only
+-- copilot toggle
+vim.keymap.set('n', '<leader>cc', function()
+  if copilot_enabled then
+    vim.cmd([[Copilot disable]])
+    copilot_enabled = false
+  else
+    vim.cmd([[Copilot enable]])
+    copilot_enabled = true
+  end
+end, { desc = 'Toggle Copilot' })
+
+
 -- copilot accept
-vim.api.nvim_set_keymap('i', '<C-/>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
+vim.api.nvim_set_keymap('i', '<C-/>', 'copilot#Accept("<CR>")', { expr = true, silent = true })
+

@@ -128,7 +128,7 @@ local pluginList = {
     'akinsho/toggleterm.nvim',
     version = "*",
     opts = {
-      open_mapping = [[<C-`>]]
+      open_mapping = [[<c-\>]],
     }
   },
 
@@ -140,7 +140,7 @@ local pluginList = {
   --   { 'rhysd/vim-clang-format' },
 
   -- { 'Exafunction/codeium.vim' },
-  -- Copilot 
+  -- Copilot
   { 'github/copilot.vim' },
   { 'brettanomyces/nvim-editcommand' },
 
@@ -163,6 +163,50 @@ local pluginList = {
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   },
+  {
+    "nvim-neorg/neorg",
+    lazy = false,
+    version = "*",
+    dependencies = {
+      'nvim-neorg/lua-utils.nvim',
+      'pysan3/pathlib.nvim',
+      'nvim-neotest/nvim-nio',
+      'MunifTanjim/nui.nvim'
+    }
+  },
+  {
+    "3rd/image.nvim",
+    opts = {}
+  },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+  },
+  {
+    "lervag/vimtex",
+    lazy = false, -- we don't want to lazy load VimTeX
+    -- tag = "v2.15", -- uncomment to pin to a specific release
+    init = function()
+      -- VimTeX configuration goes here, e.g.
+      vim.g.vimtex_view_general_viewer = 'okular'
+      vim.g.vimtex_view_general_options = '--unique file:@pdf#src:@line@tex'
+    end
+  },
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+  },
+  {
+    'ggandor/leap.nvim',
+    config = function()
+      require('leap').create_default_mappings()
+    end
+  }
 }
 
 return pluginList

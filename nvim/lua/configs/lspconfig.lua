@@ -39,12 +39,32 @@ function(server_name)
       -- overwrite the lsp format command with a custom one
       -- since pyright doesn't support formatting
       vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-        vim.cmd('!black % > /dev/null')
+        require('conform').format({bufnr = bufnr})
       end, { desc = 'Format current buffer with LSP', force=true })
     end
     require('lspconfig')['pyright'].setup {
       capabilities = capabilities,
       on_attach = on_attach
+    }
+  end,
+  ['ltex'] = function()
+    local bindings = require('lspbindings')
+    local on_attach = function(_, bufnr)
+      bindings(_, bufnr)
+      -- overwrite the lsp format command with a custom one
+      -- since pyright doesn't support formatting
+      vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+        require('conform').format({bufnr = bufnr})
+      end, { desc = 'Format current buffer with LSP', force=true })
+    end
+    require('lspconfig')['ltex'].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = {
+        ltex = {
+          checkFrequency = 'save'
+        }
+      }
     }
   end,
   -- we handle this one separately
