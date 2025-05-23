@@ -1,4 +1,5 @@
 */*
+*.*
 
 
 # nvim
@@ -7,6 +8,15 @@ nvim/lazy-lock.json
 
 # scripts
 !scripts/*
+
+# fish
+!fish/*
+
+# wm stuff
+!sway/*
+!waybar/*
+!rofi/*
+!swaync/*
 
 # annoyances
 .DS_Store
