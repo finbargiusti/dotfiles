@@ -32,7 +32,7 @@ default_border pixel 2
 default_floating_border pixel 2
 
 output eDP-1 {
-  mode 1920x1080@60Hz
+  mode --custom 1920x1080@60Hz
 }
 
 bindsym $mod+Shift+F7 exec swaymsg "output eDP-1 mode --custom 1920x1080@60Hz"
