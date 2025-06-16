@@ -205,31 +205,36 @@ mode $screenshot {
   }
 }
 
-bindsym --to-code $mod+s mode $screenshot
+bindsym --to-code $mod+Shift+s mode $screenshot
 
-set {
-  $theme "Theme: [i]taly [h]acker"
-}
+set $action-palette ~/.config/scripts/choose-script.sh
+set $change-theme ~/.config/scripts/change-theme.sh
+set $open-project ~/.config/scripts/open-project.sh
+set $clone-project ~/.config/scripts/clone-project.sh
+set $open-session ~/.config/scripts/open-session.sh
+set $notes-menu ~/.config/scripts/notes-menu.sh
 
-mode $theme {
-  bindsym --to-code {
-    i mode "default", exec ~/.config/scripts/change-theme.sh italy
-    h mode "default", exec ~/.config/scripts/change-theme.sh hacker
+bindsym --to-code $mod+t exec $change-theme
+bindsym --to-code $mod+p exec $open-project
+bindsym --to-code $mod+g exec $clone-project
+bindsym --to-code $mod+s exec $open-session
+bindsym --to-code $mod+n exec $notes-menu
+bindsym --to-code $mod+Shift+a exec $action-palette
 
-    Return mode "default"
-    Escape mode "default"
-    $mod+x mode "default"
-  }
-}
+# common launchers
+bindsym $mod+Shift+y exec "firefox --profile /home/finbar/.mozilla/firefox/6y3oxrzw.netflix youtube.com"
+bindsym $mod+Shift+n exec "firefox --profile /home/finbar/.mozilla/firefox/6y3oxrzw.netflix netflix.com"
+bindsym $mod+Shift+m exec "kodi"
 
-bindsym --to-code $mod+t mode $theme
+# exec_always killall waybar
 
-exec_always killall waybar
+set $locksleep 'systemctl suspend; swaylock'
+
+bindswitch --reload --locked lid:on exec $locksleep
 
 blur enable
+blur_radius 6
 
-layer_effects waybar blur enable
-layer_effects rofi blur enable
 
 include /etc/sway/config.d/*
 include ~/.config/sway/theme.conf
