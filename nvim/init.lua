@@ -81,10 +81,8 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Pull plugins
-require('lazy').setup(require('plugins'), {})
+require('lazy').setup { spec = { { import = 'plugins' } }, }
 
-require('configs.image')
-require('configs.neorg')
 require('configs.telescope')
 require('configs.nvim-treesitter')
 require('configs.lspconfig')
@@ -97,6 +95,7 @@ require('keybinds')
 -- vim settings
 require('settings')
 
+-- TODO: move this
 require("conform").setup({
   formatters_by_ft = {
     python = { "isort", "black" },
@@ -104,3 +103,7 @@ require("conform").setup({
     tex = { "latexindent" },
   },
 })
+
+vim.cmd [[
+  colorscheme unokai
+]]

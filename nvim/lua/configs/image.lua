@@ -1,9 +1,12 @@
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
 
-local options = {
+opts = {
   backend = "kitty",
   processor = "magick_cli", -- or "magick_cli"
+  rocks = {
+    enabled = false
+  },
   integrations = {
     markdown = {
       enabled = true,
@@ -12,13 +15,6 @@ local options = {
       only_render_image_at_cursor = false,
       floating_windows = false,              -- if true, images will be rendered in floating markdown windows
       filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
-    },
-    neorg = {
-      enabled = true,
-      clear_in_insert_mode = false,
-      download_remote_images = true,
-      only_render_image_at_cursor = true,
-      filetypes = { "norg" },
     },
     html = {
       enabled = false,
@@ -39,20 +35,4 @@ local options = {
   kitty_method = "normal",                                                           -- method to display images in kitty
 }
 
-local function options_with(opts)
-  return vim.tbl_extend("force", options, opts)
-end
-
-
-local scale_factor=1
-
-require("image").setup(options_with({
-  scale_factor=scale_factor,
-}))
-
-vim.keymap.set('n', '<leader>i+', function()
-    scale_factor = scale_factor + 0.1
-    require('image').setup(options_with({
-      scale_factor=scale_factor,
-    }))
-  end)
+return opts

@@ -59,6 +59,15 @@ set fish_cursor_visual block
 
 alias vi=$(which nvim)
 
+alias xcopy "xclip -selection clipboard -i"
+
+function fish_prompt -d "Write out the prompt"
+    printf '%s %s%s%s %s -> ' $USER \
+        (set_color $fish_color_cwd) (prompt_pwd) (set_color normal) \
+        $status
+end
+
 fish_add_path /home/finbar/.spicetify
+fish_add_path /home/finbar/.cargo/bin
 
-
+[ -s /home/finbar/.luaver/luaver ] && bass source /home/finbar/.luaver/luaver

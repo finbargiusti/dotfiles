@@ -11,8 +11,6 @@ local servers = {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
--- require('java').setup()
-
 -- Setup mason so it can manage external tooling
 require('mason').setup()
 
@@ -20,53 +18,17 @@ require('mason').setup()
 local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-  automatic_installation = true
+  automatic_enable = true
 }
 
-mason_lspconfig.setup_handlers {
-function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = require('lspbindings'),
-      settings = servers[server_name],
-    }
+local add_lsp_keybinds = require 'lspbindings'
+
+-- add lsp keybinds to any buffer with an LSP client attached
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('LspKeybinds', { clear = true }),
+  callback = function(event)
+    local bufnr = event.buf
+    add_lsp_keybinds(nil, bufnr)
   end,
-  ['pyright'] = function() 
-    local bindings = require('lspbindings')
-    local on_attach = function(_, bufnr)
-      bindings(_, bufnr)
-      -- overwrite the lsp format command with a custom one
-      -- since pyright doesn't support formatting
-      vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-        require('conform').format({bufnr = bufnr})
-      end, { desc = 'Format current buffer with LSP', force=true })
-    end
-    require('lspconfig')['pyright'].setup {
-      capabilities = capabilities,
-      on_attach = on_attach
-    }
-  end,
-  ['ltex'] = function()
-    local bindings = require('lspbindings')
-    local on_attach = function(_, bufnr)
-      bindings(_, bufnr)
-      -- overwrite the lsp format command with a custom one
-      -- since pyright doesn't support formatting
-      vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-        require('conform').format({bufnr = bufnr})
-      end, { desc = 'Format current buffer with LSP', force=true })
-    end
-    require('lspconfig')['ltex'].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = {
-        ltex = {
-          checkFrequency = 'save'
-        }
-      }
-    }
-  end,
-  -- we handle this one separately
-  ['jdtls'] = function() end
-}
+})

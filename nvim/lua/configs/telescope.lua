@@ -9,8 +9,8 @@ require('telescope').setup {
   },
 }
 
--- this shouldn't be here, but I don't want to put in its own file
 pcall(require('telescope').load_extension, 'fzf')
+pcall(require('telescope').load_extension, 'media_files')
 
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
