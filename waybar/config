@@ -1,5 +1,5 @@
 {
-  "modules-left": ["sway/workspaces", "sway/window", "sway/mode"],
+  "modules-left": ["sway/workspaces", "sway/mode"],
   "modules-right": ["pulseaudio", "backlight", "network", "bluetooth", "battery", "clock"],
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
