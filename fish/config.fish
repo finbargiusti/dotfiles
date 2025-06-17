@@ -70,5 +70,3 @@ end
 fish_add_path ~/.spicetify
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.config/scripts
-
-[ -s /home/finbar/.luaver/luaver ] && bass source /home/finbar/.luaver/luaver
