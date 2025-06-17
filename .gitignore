@@ -10,6 +10,9 @@ nvim/lazy-lock.json
 # menu scripts
 !menu/*
 
+# general scripts
+!scripts/*
+
 # fish
 !fish/*
 

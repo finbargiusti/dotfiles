@@ -1,0 +1,36 @@
+#!/bin/sh
+
+if [ ! -d "~/Backups/vaultwarden" ]; then
+  mkdir -p ~/Backups/vaultwarden
+fi
+
+SERVER=keyserv # hostname for safety
+
+# execute backup
+ssh keyserv "podman exec -it vaultwarden_admin /vaultwarden backup" | tee /tmp/backup-results.log
+
+if [ $? -ne 0 ]; then
+  echo "Connection to server failed or backup command failed."
+  exit 1
+fi
+
+# the backup name is handily printed in the output between single quotes
+
+BACKUP_NAME=$(sed -nE "s/.*'([^']+)'.*/\1/p" /tmp/backup-results.log)
+BACKUP_NAME=$(basename "$BACKUP_NAME")
+
+echo $BACKUP_NAME
+
+# NOTE: this is a hack as the container returns
+# data/[name] but the /data folder is mounted
+# to /vw-data
+
+scp "keyserv:/vw-data/$BACKUP_NAME" ~/Backups/vaultwarden/$BACKUP_NAME
+
+if [ -f ~/Backups/vaultwarden/$BACKUP_NAME ]; then
+  echo "Moving on server..."
+  ssh keyserv "mv /vw-data/$BACKUP_NAME /backup/$BACKUP_NAME"
+  echo "Backup successful: ~/Backups/vaultwarden/$BACKUP_NAME"
+else
+  echo "Backup failed or file not found."
+fi
