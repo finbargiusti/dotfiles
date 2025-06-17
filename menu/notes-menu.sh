@@ -8,10 +8,10 @@ END
 
 case $CHOICE in
   "Index")
-    kitty nvim ~/Notes/index.md
+    kitty nvim -c 'cd ~/Notes' ~/Notes/index.md
     ;;
   "Journal")
-    kitty nvim -c 'Telekasten goto_today'
+    kitty nvim -c 'Telekasten goto_today' -c 'cd ~/Notes'
     ;;
 esac
   
