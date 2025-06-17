@@ -1,0 +1,107 @@
+* {
+  accent: rgb(60, 56, 54, 0.5);
+  bg: rgba(20, 20, 20, 1);
+  fg: #ebdbb2;
+  background-color: rgba(0, 0, 0, 0);
+  text-color: @fg;
+  font: "RobotoMono Nerd Font 14";
+}
+
+element-text,
+element-icon,
+mode-switcher {
+  background-color: rgba(0, 0, 0, 0);
+  text-color: inherit;
+}
+
+window {
+  width: 648px;
+  transparency: "real";
+  border: 2px;
+  border-color: @fg;
+  background-color: rgba(20, 20, 20, 0.2);
+}
+
+textbox-prompt-colon {
+  padding: 8px 6px;
+  border: 0 0 2px 0;
+  border-color: @fg;
+  str: "";
+  expand: false;
+}
+
+
+entry {
+  placeholder: "Search";
+  placeholder-color: @fg;
+  text-color: @fg;
+  border: 0 0 2px 0;
+  border-color: @fg;
+  padding: 8px 2px;
+  expand: true;
+}
+
+inputbar {
+  children: [textbox-prompt-colon,entry];
+  expand: false;
+  spacing: 0;
+  margin: 20px;
+}
+
+listview {
+  background-color: rgba(0, 0, 0, 0);
+  columns: 1;
+  lines: 7;
+  spacing: 0;
+  cycle: false;
+  dynamic: true;
+  layout: vertical;
+  margin: 0 20px;
+  scrollbar: false;
+}
+
+mainbox {
+  children: [inputbar,listview,mode-switcher];
+}
+
+element {
+  orientation: horizontal;
+  padding: 12px 24px;
+  
+  background-color: rgba(0, 0, 0, 0);
+}
+
+element-text {
+  expand: true;
+  margin: 0 10px;
+  
+  background-color: inherit;
+  text-color: inherit;
+}
+
+element selected {
+  background-color: @fg;
+  
+  text-color: @bg;
+}
+
+mode-switcher {
+  background-color: @accent;
+  spacing: 0;
+  border-color: green;
+  margin: 20px;
+}
+
+button {
+  padding: 15px;
+  margin: 0;
+  
+  text-color: @fg;
+  background-color: @accent;
+}
+
+button selected {
+  padding: 8px;
+  text-color: @bg;
+  background-color: @fg;
+}
