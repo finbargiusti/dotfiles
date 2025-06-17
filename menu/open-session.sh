@@ -9,11 +9,11 @@ if [ $? -eq 0 ]; then
   COUNT=$(( $COUNT < $MAX_COUNT ? $COUNT : $MAX_COUNT ))
   PROMPT="OPEN/CREATE SESSION"
   SELECTED_SESSION=$(
-    printf "%s\n" $SESSIONS | ~/.config/scripts/lib/menu.sh -c -w 600 -l $COUNT -p "$PROMPT" \
+    printf "%s\n" $SESSIONS | ~/.config/menu/lib/menu.sh -c -w 600 -l $COUNT -p "$PROMPT" \
   ) || exit 1
 else
   SELECTED_SESSION=$(
-    ~/.config/scripts/lib/menu.sh -c -w 600 -p "CREATE SESSION" \
+    ~/.config/menu/lib/menu.sh -c -w 600 -p "CREATE SESSION" \
   ) || exit 1
 fi
 

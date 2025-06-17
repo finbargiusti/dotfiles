@@ -13,7 +13,7 @@ else
   LENGTH=$(echo "$OPTIONS" | wc -l)
   LENGTH=$(($LENGTH > $MAX_LENGTH ? $MAX_LENGTH : $LENGTH))
   PROJECT_NAME=$(printf "%s\n" $OPTIONS | 
-    ~/.config/scripts/lib/menu.sh -c -l $LENGTH -p "OPEN PROJECT" \
+    ~/.config/menu/lib/menu.sh -c -l $LENGTH -p "OPEN PROJECT" \
   ) || exit 1
 fi
 

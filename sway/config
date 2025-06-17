@@ -190,7 +190,7 @@ bindsym {
 set {
   $screenshot "Screenshot: [s]creen [w]window [r]egion"
 
-  $screenshot-cmd ~/.config/scripts/screenshot.sh
+  $screenshot-cmd ~/.config/menu/screenshot.sh
 }
 
 mode $screenshot {
@@ -207,12 +207,12 @@ mode $screenshot {
 
 bindsym --to-code $mod+Shift+s mode $screenshot
 
-set $action-palette ~/.config/scripts/choose-script.sh
-set $change-theme ~/.config/scripts/change-theme.sh
-set $open-project ~/.config/scripts/open-project.sh
-set $clone-project ~/.config/scripts/clone-project.sh
-set $open-session ~/.config/scripts/open-session.sh
-set $notes-menu ~/.config/scripts/notes-menu.sh
+set $action-palette ~/.config/menu/choose-script.sh
+set $change-theme ~/.config/menu/change-theme.sh
+set $open-project ~/.config/menu/open-project.sh
+set $clone-project ~/.config/menu/clone-project.sh
+set $open-session ~/.config/menu/open-session.sh
+set $notes-menu ~/.config/menu/notes-menu.sh
 
 bindsym --to-code $mod+t exec $change-theme
 bindsym --to-code $mod+p exec $open-project

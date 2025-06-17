@@ -3,7 +3,7 @@
 PROJECT_DIR=~/Projects
 
 REPO_URL=$(
-  ~/.config/scripts/lib/menu.sh -c -w 700 -p "REPO URL" \
+  ~/.config/menu/lib/menu.sh -c -w 700 -p "REPO URL" \
 ) || exit 1
 
 
@@ -17,5 +17,5 @@ fi
 kitty sh -c "cd $PROJECT_DIR && git clone $REPO_URL || cat"
 
 if [ -d "$PROJECT_DIR/$REPO_NAME" ]; then
-  ~/.config/scripts/open-project.sh "$REPO_NAME"
+  ~/.config/menu/open-project.sh "$REPO_NAME"
 fi

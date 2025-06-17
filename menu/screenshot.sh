@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# TODO: Make this a wmenu like the others.
+
 case $1 in
   screen) grim - | wl-copy;;
   region) grim -g "$(slurp)" - | wl-copy ;;

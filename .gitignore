@@ -7,8 +7,8 @@
 !nvim/*/**
 nvim/lazy-lock.json
 
-# scripts
-!scripts/*
+# menu scripts
+!menu/*
 
 # fish
 !fish/*

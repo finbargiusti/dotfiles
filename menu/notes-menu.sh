@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CHOICE=$(~/.config/scripts/lib/menu.sh -c -l 3 << END
+CHOICE=$(~/.config/menu/lib/menu.sh -c -l 3 << END
 Index
 Journal
 END
