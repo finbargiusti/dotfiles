@@ -1,3 +1,5 @@
+pcall(require('telescope').load_extension, 'fzf')
+
 require('telescope').setup {
   defaults = {
     mappings = {
@@ -8,9 +10,6 @@ require('telescope').setup {
     },
   },
 }
-
-pcall(require('telescope').load_extension, 'fzf')
-pcall(require('telescope').load_extension, 'media_files')
 
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })

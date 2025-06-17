@@ -83,7 +83,6 @@ vim.g.maplocalleader = ' '
 -- Pull plugins
 require('lazy').setup { spec = { { import = 'plugins' } }, }
 
-require('configs.telescope')
 require('configs.nvim-treesitter')
 require('configs.lspconfig')
 require('configs.cmp')
