@@ -118,6 +118,9 @@ return {
           inline = true,
           float = true,
         }
+      },
+      scroll = {
+        enabled = true
       }
     },
   },
