@@ -11,7 +11,7 @@ if vim.fn.expand('%:p'):find(home, 1, true) == nil then
 end
 
 vim.keymap.set('n', '<CR>', function()
-  local link_pattern = '%[%[[%w%s]+%]%]'
+  local link_pattern = '%[%[[%w%s/_-]+%]%]'
   -- check if the cursor is on a link
   local line = vim.api.nvim_get_current_line()
   local col = vim.api.nvim_win_get_cursor(0)[2] + 1
@@ -35,12 +35,21 @@ vim.keymap.set('n', '<leader>zf', '<cmd>Telekasten find_notes<cr>', { desc = 'Ne
 vim.keymap.set('i', '<A-Enter>', function() 
   -- This function create a new list item in markdown,
   -- or just creates a new line
-
   local line = vim.api.nvim_get_current_line()
+
+  local todo_match = line:match('^%s*%-%s+%[.-%]')
+  if todo_match then
+    -- If the line starts with a todo item, add a new item
+    vim.cmd [[ stopinsert ]]
+    local input = 'o- [ ] '
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(input, true, false, true), 'n', true)
+    return
+  end
 
   local bullet_match = line:match('^%s*[-*]')
   if bullet_match then
     -- If the line starts with a bullet, add a new item
+    vim.cmd [[ stopinsert ]]
     local input = 'o' .. bullet_match .. ' '
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(input, true, false, true), 'n', true)
     return
@@ -50,6 +59,7 @@ vim.keymap.set('i', '<A-Enter>', function()
   if number_match then
     -- If the line starts with a numbered list, add a new item
     local next_number = tonumber(number_match:match('(%d+)')) + 1
+    vim.cmd [[ stopinsert ]]
     local input = 'o' .. next_number .. '. '
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(input, true, false, true), 'n', true)
     return
