@@ -1,0 +1,9 @@
+#!/bin/sh
+
+curl -L "https://bing.biturl.top/?resolution=UHD&format=image&index=random&mkt=random" > ~/.config/wallpapers/bing.jpg
+
+wallust run -s ~/.config/wallpapers/bing.jpg
+
+# load the sway config
+chmod +x ~/.config/scripts/random_colors.sh
+~/.config/scripts/random_colors.sh

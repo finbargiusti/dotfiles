@@ -233,8 +233,8 @@ set $locksleep 'systemctl suspend; swaylock'
 bindswitch --reload --locked lid:on exec $locksleep
 
 blur enable
-blur_radius 6
-
+blur_radius 4
+blur_brightness 1
 
 include /etc/sway/config.d/*
 include ~/.config/sway/theme.conf
