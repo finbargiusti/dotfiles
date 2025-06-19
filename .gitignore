@@ -4,3 +4,5 @@ kitty/colors.conf
 menu/lib/menu.sh
 scripts/random_colors.sh
 wallpapers/bing.jpg
+sway/themes/.random_colors.conf
+waybar/random.css

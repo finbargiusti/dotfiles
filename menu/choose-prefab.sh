@@ -1,15 +1,16 @@
 #!/bin/sh
 
+PREFABS_DIR="$HOME/.config/prefabs/"
+MENU="$HOME/.config/menu/lib/menu.sh"
+
 SCRIPT=$(
-  find $HOME/.config/menu -maxdepth 1 -type f | \
-  xargs -n 1 basename | \
-  grep -v choose-script.sh | \
-  cut -d'.' -f1 | \
-  $HOME/.config/menu/lib/menu.sh -p 'Choose script:' -i -c -l 7
+  find $PREFABS_DIR -maxdepth 1 -type f | \
+  xargs -I {} basename {} | \
+  $MENU -p 'Choose prefab:' -i -c -l 7
 ) || exit 1
 
-if [ -z "$SCRIPT" ]; then
+if [ -z "$PREFABS_DIR$SCRIPT" ]; then
   exit 1
 fi
 
-~/.config/menu/$SCRIPT.sh
+$PREFABS_DIR$SCRIPT

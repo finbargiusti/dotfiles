@@ -30,14 +30,17 @@ palette = "dark"
 #  100        Colors are exact opposite
 threshold =  11
 alpha = 40
-saturation = 40
+saturation = 25
 
 [templates]
 menu.template = "wmenu.sh"
 menu.target = "~/.config/menu/lib/menu.sh"
 
-sway.template = "sway-colors.sh"
-sway.target = "~/.config/scripts/random_colors.sh"
+sway.template = "sway-colors.conf"
+sway.target = "~/.config/sway/themes/.random_colors.conf"
 
 kitty.template = "kitty.conf"
 kitty.target = "~/.config/kitty/colors.conf"
+
+waybar.template = "waybar.css"
+waybar.target = "~/.config/waybar/random.css"

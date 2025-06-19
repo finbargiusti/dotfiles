@@ -12,12 +12,12 @@ set {
   $up k
   $right l
 
-  $resize_factor 40px
+  $resize_factor 200px
 
   $menu rofi -show drun | swaymsg
   $file rofi -show filebrowser | swaymsg
   $power rofi -show powermenu | swaymsg
-  $browser firefox
+  $browser firefox --new-window about:blank
   $private-browser firefox --private-window
 }
 
@@ -88,6 +88,7 @@ bindsym --locked {
   XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
   XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
   XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+  $mod+XF86AudioMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
   XF86AudioPlay exec playerctl play-pause
   XF86AudioNext exec playerctl next
@@ -97,6 +98,9 @@ bindsym --locked {
   $mod+Period exec playerctl next
   $mod+Comma exec playerctl previous
 }
+
+
+
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -126,6 +130,9 @@ bindsym {
   $mod+Ctrl+$down resize grow height $resize_factor 
   $mod+Ctrl+$up resize shrink height $resize_factor
   $mod+Ctrl+$right resize grow width $resize_factor 
+
+  $mod+Ctrl+Minus resize shrink width $resize_factor, resize shrink height $resize_factor
+  $mod+Ctrl+Equal resize grow width $resize_factor, resize grow height $resize_factor
 }
 
 #
@@ -207,7 +214,7 @@ mode $screenshot {
 
 bindsym --to-code $mod+Shift+s mode $screenshot
 
-set $action-palette ~/.config/menu/choose-script.sh
+set $prefab-picker ~/.config/menu/choose-prefab.sh
 set $change-theme ~/.config/menu/change-theme.sh
 set $open-project ~/.config/menu/open-project.sh
 set $clone-project ~/.config/menu/clone-project.sh
@@ -219,7 +226,7 @@ bindsym --to-code $mod+p exec $open-project
 bindsym --to-code $mod+g exec $clone-project
 bindsym --to-code $mod+s exec $open-session
 bindsym --to-code $mod+n exec $notes-menu
-bindsym --to-code $mod+Shift+a exec $action-palette
+bindsym --to-code $mod+Shift+p exec $prefab-picker
 
 # common launchers
 bindsym $mod+Shift+y exec "firefox --profile /home/finbar/.mozilla/firefox/6y3oxrzw.netflix youtube.com"
@@ -233,8 +240,8 @@ set $locksleep 'systemctl suspend; swaylock'
 bindswitch --reload --locked lid:on exec $locksleep
 
 blur enable
-blur_radius 4
-blur_brightness 1
+blur_radius 2
+blur_brightness 0.8 
 
 include /etc/sway/config.d/*
 include ~/.config/sway/theme.conf

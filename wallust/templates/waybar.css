@@ -1,0 +1,122 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: RobotoMono Nerd Font;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+window#waybar {
+  background-color: transparent;
+  color: {{ color3 }};
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+
+#workspaces button {
+  padding: 0px 8px 2px 8px;
+  color: {{ foreground }};
+  background-color: {{ color1 | blend(background) }};
+  border-radius: 8px;
+  min-width: 32px;
+  margin-top: 16px;
+  margin-left: 16px;
+}
+
+#workspaces button.focused {
+  background-color: {{ color3 }};
+  color: {{ foreground }};
+  border-bottom: none;
+}
+
+#workspaces button.urgent {
+  background-color: #cc241d;
+}
+
+widget > * {
+  margin-bottom: 0px;
+}
+
+.modules-left > widget > * {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.modules-left > widget:first-child > * {
+  margin-left: 0px;
+}
+
+.modules-left > widget:last-child > * {
+  margin-right: 18px;
+}
+
+.modules-right {
+  padding-top: 16px;
+}
+
+.modules-right > widget > * {
+  padding: 0 16px;
+  margin-left: 0;
+  margin-right: 0;
+  color: {{ foreground }};
+}
+
+.modules-right > widget:nth-child(3n+1) > * { 
+  background-color: {{ color2 }};
+}
+
+.modules-right > widget:nth-child(3n+2) > * { 
+  background-color: {{ color3 }};
+}
+
+.modules-right > widget:nth-child(3n+3) > * { 
+  background-color: {{ color4 }};
+}
+
+.modules-right > widget:first-child > * {
+  border-radius: 8px 0 0 8px;
+}
+
+.modules-right > widget:last-child > * {
+  border-radius: 0 8px 8px 0;
+  margin-right: 16px;
+}
+
+#mode {
+  background: transparent;
+  color: #fb4934;
+}
+
+@keyframes blink {
+  to {
+    color: #ebdbb2;
+  }
+}
+
+#battery.critical:not(.charging) {
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery {
+  padding-right: 32px;
+}
+
+label:focus {
+  background-color: #282828;
+}
+
+tooltip {
+  border-radius: 8px;
+  background: {{ background }};
+}
+
+tooltip label {
+  color: {{ foreground }};
+}
