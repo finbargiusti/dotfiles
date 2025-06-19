@@ -37,7 +37,7 @@ vim.keymap.set('i', '<A-Enter>', function()
   -- or just creates a new line
   local line = vim.api.nvim_get_current_line()
 
-  local todo_match = line:match('^%s*%-%s+%[.-%]')
+  local todo_match = line:match('^%s*%-%s+%[.%]')
   if todo_match then
     -- If the line starts with a todo item, add a new item
     vim.cmd [[ stopinsert ]]
@@ -67,3 +67,6 @@ vim.keymap.set('i', '<A-Enter>', function()
 
   vim.cmd('normal! o')
 end, { desc = 'New Item' })
+
+-- disable copilot (don't need it)
+vim.cmd [[ Copilot disable ]]
