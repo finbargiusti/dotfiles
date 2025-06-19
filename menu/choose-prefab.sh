@@ -3,10 +3,16 @@
 PREFABS_DIR="$HOME/.config/prefabs/"
 MENU="$HOME/.config/menu/lib/menu.sh"
 
+OPTS=$(
+    find $PREFABS_DIR -maxdepth 1 -type f | \
+    xargs -I {} basename {} 
+)
+
+LEN=$(wc -l <<< $OPTS)
+LEN=$(( $LEN > 8 ? 8 : $LEN ))
+
 SCRIPT=$(
-  find $PREFABS_DIR -maxdepth 1 -type f | \
-  xargs -I {} basename {} | \
-  $MENU -p 'Choose prefab:' -i -c -l 7
+  $MENU -p 'Choose prefab:' -i -c -l $LEN <<< $OPTS
 ) || exit 1
 
 if [ -z "$PREFABS_DIR$SCRIPT" ]; then

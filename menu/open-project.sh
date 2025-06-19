@@ -10,10 +10,10 @@ if [ -n "$1" ]; then
   PROJECT_NAME="$1"
 else
   OPTIONS=$(ls $PROJECT_DIR)
-  LENGTH=$(echo "$OPTIONS" | wc -l)
+  LENGTH=$(wc -l <<< $OPTIONS)
   LENGTH=$(($LENGTH > $MAX_LENGTH ? $MAX_LENGTH : $LENGTH))
-  PROJECT_NAME=$(printf "%s\n" $OPTIONS | 
-    ~/.config/menu/lib/menu.sh -c -l $LENGTH -p "OPEN PROJECT" \
+  PROJECT_NAME=$(
+    ~/.config/menu/lib/menu.sh -c -l $LENGTH -p "OPEN PROJECT" <<< $OPTIONS
   ) || exit 1
 fi
 
