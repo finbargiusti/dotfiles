@@ -19,7 +19,7 @@ IMGADDR_TWO=/tmp/cover_art_2.png
 IMGADDR="$IMGADDR_ONE"
 
 get_cover() {
-  wget -q "$(playerctl metadata mpris:artUrl)" -O "$IMGADDR"
+  curl -s "$(playerctl metadata mpris:artUrl)" -o "$IMGADDR" 
 }
 
 SEEKPOS=0
@@ -39,7 +39,7 @@ mpv --image-display-duration=inf \
   --no-input-default-bindings \
   --no-auto-window-resize \
   --no-osc --no-osd-bar --player-operation-mode=pseudo-gui \
-  --input-ipc-server=$MPV_SOCK $IMGADDR $IMGADDR > /dev/null &
+  --input-ipc-server=$MPV_SOCK $IMGADDR > /dev/null &
 MPV_PID=$!
 
 while true; do
@@ -49,7 +49,7 @@ while true; do
 
   NEW_ARTURL="$(playerctl metadata mpris:artUrl)"
   if [ "$ARTURL" == "$NEW_ARTURL" ]; then
-    sleep 1
+    sleep 2
   else
     if [ "$IMGADDR" == "$IMGADDR_ONE" ]; then
       IMGADDR="$IMGADDR_TWO"
