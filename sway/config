@@ -220,12 +220,15 @@ set $open-project ~/.config/menu/open-project.sh
 set $clone-project ~/.config/menu/clone-project.sh
 set $open-session ~/.config/menu/open-session.sh
 set $notes-menu ~/.config/menu/notes-menu.sh
+set $bluetooth-menu ~/.config/menu/bluetooth.sh
 
 bindsym --to-code $mod+t exec $change-theme
 bindsym --to-code $mod+p exec $open-project
 bindsym --to-code $mod+g exec $clone-project
 bindsym --to-code $mod+s exec $open-session
 bindsym --to-code $mod+n exec $notes-menu
+# d for devices
+bindsym --to-code $mod+d exec $bluetooth-menu 
 bindsym --to-code $mod+Shift+p exec $prefab-picker
 
 # common launchers
