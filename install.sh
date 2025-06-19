@@ -11,6 +11,24 @@ tmux
 .git
 EOF
 
+link() {
+  SOURCE="$1"
+  TARGET="$2"
+
+  if [ -e "$TARGET" ] && ! [ -L "$TARGET" ]; then
+    echo "Backing up existing $TARGET to $TARGET.bak.$(date +%s)"
+    mv "$TARGET" "$TARGET.bak.$(date +%s)"
+  fi
+
+  # this prevents recursive link being added.. weird
+  if [ -L "$TARGET" ]; then
+    rm $TARGET
+  fi
+
+  echo "Linking $SOURCE to $TARGET"
+  ln -sf "$SOURCE" "$TARGET"
+}
+
 
 if [ ! $SCRIPTDIR == "$HOME/.config" ]; then
   mkdir -p "$HOME/.config" > /dev/null;
@@ -20,23 +38,9 @@ if [ ! $SCRIPTDIR == "$HOME/.config" ]; then
     CONFIG_DIR="$HOME/.config/$folder"
     SOURCE_DIR="$SCRIPTDIR/$folder"
 
-    if [ -d $CONFIG_DIR ] && ! [ -L $CONFIG_DIR ]; then
-      BACKUP_DIR="$HOME/.config/$folder.bak.$(date +%s)"
-
-      # this will probably never happen
-      while [ -d "$BACKUP_DIR" ]; do
-        BACKUP_DIR="$HOME/.config/$folder.bak.$(date +%s)"
-      done
-
-      echo "Backing up existing $folder to $BACKUP_DIR"
-  
-      mv "$CONFIG_DIR" "$BACKUP_DIR"
-    fi
-
-    echo "Linking $SCRIPTDIR/$folder to $HOME/.config/$folder"
-    ln -sf "$SCRIPTDIR/$folder" "$HOME/.config/$folder"
+    link "$SCRIPTDIR/$folder" "$HOME/.config/$folder"
   done
 fi
 
 # Install home-level config files
-ln -sf "$SCRIPTDIR/tmux/tmux.conf" "$HOME/.tmux.conf"
+link "$SCRIPTDIR/tmux/tmux.conf" "$HOME/.tmux.conf"
