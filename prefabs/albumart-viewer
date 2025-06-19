@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# albumart-viewer
+# Display current album art in mpv
+
+# BE WARY
+# This is a very hacky script!
+# Works on my system :shrug:
+
+MPV_SOCK="/tmp/mpvsock"
+
+TRACKID="$(playerctl metadata mpris:trackid)"
+ARTURL="$(playerctl metadata mpris:artUrl)"
+
+# switching filenames forces mpv to reload the image NOW
+IMGADDR_ONE=/tmp/cover_art_1.png
+IMGADDR_TWO=/tmp/cover_art_2.png
+
+IMGADDR="$IMGADDR_ONE"
+
+get_cover() {
+  wget -q "$(playerctl metadata mpris:artUrl)" -O "$IMGADDR"
+}
+
+SEEKPOS=0
+
+# here we use a hack to make mpv load quicker
+set_cover() {
+  echo "{ \"command\": [\"loadfile\", \"$IMGADDR\", \"replace\"] }" | \
+  socat - $MPV_SOCK
+}
+
+
+swaymsg 'for_window [app_id="mpv"] floating enable'
+
+get_cover
+mpv --image-display-duration=inf \
+  --no-config \
+  --no-input-default-bindings \
+  --no-auto-window-resize \
+  --no-osc --no-osd-bar --player-operation-mode=pseudo-gui \
+  --input-ipc-server=$MPV_SOCK $IMGADDR $IMGADDR > /dev/null &
+MPV_PID=$!
+
+while true; do
+  if ! kill -0 $MPV_PID 2>/dev/null; then
+    exit 0
+  fi
+
+  NEW_ARTURL="$(playerctl metadata mpris:artUrl)"
+  if [ "$ARTURL" == "$NEW_ARTURL" ]; then
+    sleep 1
+  else
+    if [ "$IMGADDR" == "$IMGADDR_ONE" ]; then
+      IMGADDR="$IMGADDR_TWO"
+    else
+      IMGADDR="$IMGADDR_ONE"
+    fi
+    get_cover
+    set_cover
+    ARTURL="$NEW_ARTURL"
+  fi
+done
