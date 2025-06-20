@@ -1,8 +1,14 @@
 #!/bin/sh
 
-# TODO: Make this a wmenu like the others.
+CHOICE=$(
+  ~/.config/menu/lib/menu.sh -c -l 3 << END
+screen
+region
+window
+END
+) || exit 1
 
-case $1 in
+case $CHOICE in
   screen) grim - | wl-copy;;
   region) grim -g "$(slurp)" - | wl-copy ;;
   window) grim -g "$(

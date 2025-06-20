@@ -191,28 +191,9 @@ bindsym {
   $mod+BracketRight splith
 }
 
-#
-### Screenshot mode:
-#
-set {
-  $screenshot "Screenshot: [s]creen [w]window [r]egion"
+set $screenshot ~/.config/menu/screenshot.sh
 
-  $screenshot-cmd ~/.config/menu/screenshot.sh
-}
-
-mode $screenshot {
-  bindsym --to-code {
-    s mode "default", exec $screenshot-cmd screen
-    w mode "default", exec $screenshot-cmd window 
-    r mode "default", exec $screenshot-cmd region 
-
-    Return mode "default"
-    Escape mode "default"
-    $mod+x mode "default"
-  }
-}
-
-bindsym --to-code $mod+Shift+s mode $screenshot
+bindsym --to-code $mod+Shift+s exec $screenshot
 
 set $prefab-picker ~/.config/menu/choose-prefab.sh
 set $change-theme ~/.config/menu/change-theme.sh
