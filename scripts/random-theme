@@ -1,8 +1,3 @@
 #!/bin/sh
 
-# curl -L "https://bing.biturl.top/?resolution=UHD&format=image&index=random&mkt=random" > ~/.config/wallpapers/bing.jpg
-curl -L "https://picsum.photos/3840/2160" > ~/.config/wallpapers/bing.jpg
-
-wallust run -s ~/.config/wallpapers/bing.jpg
-
-swaymsg reload
+~/.config/scripts/fetch-theme "https://picsum.photos/3840/2160" 

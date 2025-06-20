@@ -1,0 +1,15 @@
+#!/bin/sh
+
+IMG=$1
+
+# check if img is url
+
+if [[ $IMG =~ ^https?:// ]]; then
+  curl -L "$IMG" -o ~/.config/wallpapers/bing.jpg
+else
+  cp "$IMG" ~/.config/wallpapers/bing.jpg
+fi
+
+wallust run -s ~/.config/wallpapers/bing.jpg
+
+swaymsg reload
