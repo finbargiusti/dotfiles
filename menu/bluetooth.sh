@@ -32,7 +32,7 @@ MENU_ITEMS=$(
 )
 
 SELECTION=$(
-  ~/.config/menu/lib/menu.sh -c -l 8 -p "Select Bluetooth device" -w 100 <<< "$MENU_ITEMS" | xargs
+  ~/.config/menu/lib/menu.sh -c -l 8 -p "Select Bluetooth device" -w 100 <<< "$MENU_ITEMS" 
 ) || exit 1
 
 # this is fine as i expect no duplicates. Too bad!
@@ -45,9 +45,9 @@ ID=$(
 )
 
 if grep -qF "[CONNECT]" <<< "$SELECTION"; then
-  notify-send "Connecting to $SELECTION"
-  bluetoothctl connect "$ID" || notify-send "Failed to connect to $SELECTION"
+  notify-send "$SELECTION"
+  bluetoothctl connect "$ID" && notify-send "success" || notify-send "Failed to connect to $SELECTION"
 else
-  notify-send "Disconnecting from $SELECTION"
-  bluetoothctl disconnect "$ID" || notify-send "Failed to disconnect from $SELECTION"
+  notify-send "$SELECTION"
+  bluetoothctl disconnect "$ID" && notify-send "success" || notify-send "Failed to disconnect from $SELECTION"
 fi
