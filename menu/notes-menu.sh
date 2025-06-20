@@ -1,17 +1,20 @@
 #!/bin/bash
 
 CHOICE=$(~/.config/menu/lib/menu.sh -c -l 3 << END
-Index
-Journal
+index
+journal
+search
 END
 ) || exit 1
 
 case $CHOICE in
-  "Index")
+  "index")
     kitty nvim -c 'cd ~/Notes' ~/Notes/index.md
     ;;
-  "Journal")
+  "journal")
     kitty nvim -c 'Telekasten goto_today' -c 'cd ~/Notes'
     ;;
+  "search")
+    kitty nvim -c 'Telekasten find_notes' -c 'cd ~/Notes'
 esac
   
