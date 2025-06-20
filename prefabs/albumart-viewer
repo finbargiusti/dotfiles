@@ -19,7 +19,10 @@ IMGADDR_TWO=/tmp/cover_art_2.png
 IMGADDR="$IMGADDR_ONE"
 
 get_cover() {
-  curl -s "$(playerctl metadata mpris:artUrl)" -o "$IMGADDR" 
+  curl -s "$(playerctl metadata mpris:artUrl)" -o "$IMGADDR" || {
+    notify-send "failed to get media images (offline?)"
+    exit 1
+  }
 }
 
 SEEKPOS=0
@@ -29,7 +32,6 @@ set_cover() {
   echo "{ \"command\": [\"loadfile\", \"$IMGADDR\", \"replace\"] }" | \
   socat - $MPV_SOCK
 }
-
 
 swaymsg 'for_window [app_id="mpv"] floating enable'
 
