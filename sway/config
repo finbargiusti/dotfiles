@@ -16,7 +16,7 @@ set {
 
   $menu rofi -show drun | swaymsg
   $file rofi -show filebrowser | swaymsg
-  $power rofi -show powermenu | swaymsg
+  $power ~/.config/menu/power.sh
   $browser firefox --new-window about:blank
   $private-browser firefox --private-window
 }
@@ -71,7 +71,6 @@ bindsym {
   $mod+Shift+Return exec $menu
   $mod+b exec $browser
   $mod+Shift+b exec $private-browser
-  $mod+e exec $file
   $mod+q exec $power
   $mod+z exec swaylock
   $mod+Shift+c reload
@@ -150,6 +149,8 @@ bindsym {
   $mod+8 workspace number 8
   $mod+9 workspace number 9
   $mod+0 workspace number 10
+
+  $mod+m workspace music
   
   # Move focused container to workspace
   $mod+Shift+1 move container to workspace number 1
@@ -162,6 +163,8 @@ bindsym {
   $mod+Shift+8 move container to workspace number 8
   $mod+Shift+9 move container to workspace number 9
   $mod+Shift+0 move container to workspace number 10
+
+  $mod+Shift+m move container to workspace music
 }
 
 #
@@ -173,6 +176,9 @@ bindsym {
 
   # Toggle the current focus between tiling and floating mode
   $mod+Shift+space floating toggle
+
+  # sticky window
+  $mod+Shift+Up sticky toggle
 
   # Swap focus between the tiling area and the floating area
   $mod+space focus mode_toggle
@@ -196,6 +202,7 @@ set $screenshot ~/.config/menu/screenshot.sh
 bindsym --to-code $mod+Shift+s exec $screenshot
 
 set $prefab-picker ~/.config/menu/choose-prefab.sh
+set $action-picker ~/.config/menu/choose-action.sh
 set $change-theme ~/.config/menu/change-theme.sh
 set $open-project ~/.config/menu/open-project.sh
 set $clone-project ~/.config/menu/clone-project.sh
@@ -211,11 +218,11 @@ bindsym --to-code $mod+n exec $notes-menu
 # d for devices
 bindsym --to-code $mod+d exec $bluetooth-menu 
 bindsym --to-code $mod+Shift+p exec $prefab-picker
+bindsym --to-code $mod+Shift+a exec $action-picker
 
 # common launchers
-bindsym $mod+Shift+y exec "firefox --profile /home/finbar/.mozilla/firefox/6y3oxrzw.netflix youtube.com"
-bindsym $mod+Shift+n exec "firefox --profile /home/finbar/.mozilla/firefox/6y3oxrzw.netflix netflix.com"
-bindsym $mod+Shift+m exec "kodi"
+# bindsym $mod+Shift+y exec "firefox --profile /home/finbar/.mozilla/firefox/6y3oxrzw.netflix youtube.com"
+# bindsym $mod+Shift+n exec "firefox --profile /home/finbar/.mozilla/firefox/6y3oxrzw.netflix netflix.com"
 
 # exec_always killall waybar
 
