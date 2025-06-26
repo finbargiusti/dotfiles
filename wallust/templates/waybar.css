@@ -19,7 +19,7 @@ window#waybar.hidden {
 #workspaces button {
   padding: 0px 8px 2px 8px;
   color: {{ foreground }};
-  background-color: {{ color1 | blend(background) }};
+  background-color: {{ background }};
   border-radius: 8px;
   min-width: 32px;
   margin-top: 16px;
