@@ -1,0 +1,17 @@
+#!/bin/sh
+
+PROFILE=$(
+  ~/.config/menu/lib/menu.sh -c -l 4 -i -p 'Input Profile:' << END
+power-save
+balanced
+performance
+TURBO
+END
+) || exit 1
+
+if [ "$PROFILE" == "TURBO" ]; then
+  ~/.config/scripts/gsudo ~/.cargo/bin/intel-cpu-turbo performance -t;
+  exit 0
+fi
+
+~/.config/scripts/gsudo ~/.cargo/bin/intel-cpu-turbo $PROFILE

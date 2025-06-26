@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# TODO: reimplement this caching system found on archwiki:
+#
+# https://bbs.archlinux.org/viewtopic.php?pid=777137#p619209
+
 ACTIONS_DIR="$HOME/.config/actions/"
 MENU="$HOME/.config/menu/lib/menu.sh"
 
