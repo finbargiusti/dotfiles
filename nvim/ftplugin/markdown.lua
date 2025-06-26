@@ -16,7 +16,7 @@ vim.keymap.set('n', '<CR>', function()
   local line = vim.api.nvim_get_current_line()
   local col = vim.api.nvim_win_get_cursor(0)[2] + 1
   local match_start, match_end = line:find(link_pattern, 1)
-  vim.notify('match_start: ' .. tostring(match_start) .. ', match_end: ' .. tostring(match_end) .. ', col: ' .. tostring(col))
+
   if match_start and col >= match_start and col <= match_end then
     vim.cmd('Telekasten follow_link')
   else
