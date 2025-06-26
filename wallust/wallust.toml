@@ -35,7 +35,7 @@ alpha = 40
 
 [templates]
 menu.template = "wmenu.sh"
-menu.target = "~/.config/menu/lib/menu.sh"
+menu.target = "~/.config/menu/lib/random-menu.sh"
 
 sway.template = "sway-colors.conf"
 sway.target = "~/.config/sway/themes/.random_colors.conf"

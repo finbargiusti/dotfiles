@@ -1,7 +1,6 @@
 #!/bin/bash
 
 THEME_DIR=~/.config/sway/themes
-FONT="FiraCodeNerdFont Mono Bold 18 @wght=400" 
 
 NEW_THEME=$(
   ls $THEME_DIR | \
@@ -10,5 +9,6 @@ NEW_THEME=$(
 ) || exit 1
 
 ln -sf $THEME_DIR/$NEW_THEME.conf ~/.config/sway/theme.conf
+ln -sf ~/.config/menu/lib/$NEW_THEME-menu.sh ~/.config/menu/lib/menu.sh
 
 swaymsg reload
