@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# get workspace name
+
+NAME=$(
+  swaymsg -t get_workspaces | jq '.[] | select(.focused==true) | .name' |
+  cut -d '"' -f2
+)
+
+echo $NAME
+
+NUMBER=$(echo $NAME | cut -d ':' -f1)
+
+if [ "$NUMBER" = "10" ]; then
+  NUMBER="0"
+fi
+
+NEW_NAME=$(
+  ~/.config/menu/lib/menu.sh -p "New name = $NUMBER: " -c -w 500 <&- && echo
+) || exit 1
+
+swaymsg "rename workspace \"$NAME\" to \"$NUMBER: $NEW_NAME\""
+swaymsg "bindsym \$mod+$NUMBER workspace \"$NUMBER: $NEW_NAME\""
+swaymsg "bindsym \$mod+Shift+$NUMBER move container to workspace \"$NUMBER: $NEW_NAME\""
+
