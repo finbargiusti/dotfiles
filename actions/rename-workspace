@@ -7,12 +7,12 @@ NAME=$(
   cut -d '"' -f2
 )
 
-echo $NAME
-
 NUMBER=$(echo $NAME | cut -d ':' -f1)
 
 if [ "$NUMBER" = "10" ]; then
-  NUMBER="0"
+  KEY="0"
+else
+  KEY=$NUMBER
 fi
 
 NEW_NAME=$(
@@ -20,6 +20,6 @@ NEW_NAME=$(
 ) || exit 1
 
 swaymsg "rename workspace \"$NAME\" to \"$NUMBER: $NEW_NAME\""
-swaymsg "bindsym \$mod+$NUMBER workspace \"$NUMBER: $NEW_NAME\""
-swaymsg "bindsym \$mod+Shift+$NUMBER move container to workspace \"$NUMBER: $NEW_NAME\""
+swaymsg "bindsym \$mod+$KEY workspace \"$NUMBER: $NEW_NAME\""
+swaymsg "bindsym \$mod+Shift+$KEY move container to workspace \"$NUMBER: $NEW_NAME\""
 
