@@ -19,7 +19,13 @@ NEW_NAME=$(
   ~/.config/menu/lib/menu.sh -p "New name = $NUMBER: " -c -w 500 <&- && echo
 ) || exit 1
 
-swaymsg "rename workspace \"$NAME\" to \"$NUMBER: $NEW_NAME\""
-swaymsg "bindsym \$mod+$KEY workspace \"$NUMBER: $NEW_NAME\""
-swaymsg "bindsym \$mod+Shift+$KEY move container to workspace \"$NUMBER: $NEW_NAME\""
+if [ -z "$NEW_NAME" ]; then
+  WORKSPACE_NAME="$NUMBER"
+else
+  WORKSPACE_NAME="$NUMBER: $NEW_NAME"
+fi
+
+swaymsg "rename workspace \"$NAME\" to \"$WORKSPACE_NAME\""
+swaymsg "bindsym \$mod+$KEY workspace \"$WORKSPACE_NAME\""
+swaymsg "bindsym \$mod+Shift+$KEY move container to workspace \"$WORKSPACE_NAME\""
 
