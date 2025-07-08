@@ -29,7 +29,7 @@ scp "keyserv:/vw-data/$BACKUP_NAME" ~/Backups/vaultwarden/$BACKUP_NAME
 
 if [ -f ~/Backups/vaultwarden/$BACKUP_NAME ]; then
   echo "Moving on server..."
-  ssh keyserv "mv /vw-data/$BACKUP_NAME /backup/$BACKUP_NAME"
+  ssh keyserv "mv /vw-data/$BACKUP_NAME /backup/$BACKUP_NAME" && \
   echo "Backup successful: ~/Backups/vaultwarden/$BACKUP_NAME"
 else
   echo "Backup failed or file not found."
