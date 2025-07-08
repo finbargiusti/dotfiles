@@ -22,7 +22,7 @@ vim.keymap.set('n', '<CR>', function()
   else
     vim.cmd('normal! <CR>')
   end
-end, {desc = 'Follow link' })
+end, { desc = 'Follow link' })
 
 vim.keymap.set("i", "{{", "<cmd>Telekasten insert_link<CR>")
 
@@ -32,7 +32,7 @@ vim.keymap.set('n', '<leader>zn', '<cmd>Telekasten new_note<cr>', { desc = 'New 
 
 vim.keymap.set('n', '<leader>zf', '<cmd>Telekasten find_notes<cr>', { desc = 'New note' })
 
-vim.keymap.set('i', '<A-Enter>', function() 
+vim.keymap.set('i', '<A-Enter>', function()
   -- This function create a new list item in markdown,
   -- or just creates a new line
   local line = vim.api.nvim_get_current_line()
@@ -46,7 +46,7 @@ vim.keymap.set('i', '<A-Enter>', function()
     return
   end
 
-  local bullet_match = line:match('^%s*[-*]')
+  local bullet_match = line:match('^%s*([-*])')
   if bullet_match then
     -- If the line starts with a bullet, add a new item
     vim.cmd [[ stopinsert ]]
@@ -55,12 +55,20 @@ vim.keymap.set('i', '<A-Enter>', function()
     return
   end
 
-  local number_match = line:match('^%s*%d+%.')
+  local number_match = line:match('^%s*(%d+)%.')
   if number_match then
     -- If the line starts with a numbered list, add a new item
-    local next_number = tonumber(number_match:match('(%d+)')) + 1
+    local next_number = tonumber(numbr_match) + 1
     vim.cmd [[ stopinsert ]]
     local input = 'o' .. next_number .. '. '
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(input, true, false, true), 'n', true)
+    return
+  end
+
+  local quote_match = line:match('^%s*>')
+  if quote_match then
+    vim.cmd [[ stopinsert ]]
+    local input = 'o' .. quote_match -- not indented by LSP
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(input, true, false, true), 'n', true)
     return
   end
