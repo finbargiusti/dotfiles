@@ -13,7 +13,7 @@ if [ $? -eq 0 ]; then
   ) || exit 1
 else
   SELECTED_SESSION=$(
-    ~/.config/menu/lib/menu.sh -c -w 600 -p "CREATE SESSION" \
+    ~/.config/menu/lib/menu.sh -c -w 600 -p "CREATE SESSION" <&- \
   ) || exit 1
 fi
 
