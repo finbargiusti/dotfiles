@@ -72,3 +72,6 @@ fish_add_path ~/.cargo/bin
 fish_add_path ~/.config/scripts
 fish_add_path ~/.local/bin
 
+if string match $(tty) "/dev/tty1"
+  exec sway
+end
