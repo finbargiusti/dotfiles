@@ -47,7 +47,7 @@ input {
   }
 
   type:keyboard {
-    xkb_options ctrl:nocaps
+    xkb_options caps:escape
     xkb_layout gb
   }
 
