@@ -17,8 +17,8 @@ set {
   $menu rofi -show drun | swaymsg
   $file rofi -show filebrowser | swaymsg
   $power ~/.config/menu/power.sh
-  $browser firefox --new-window about:blank
-  $private-browser firefox --private-window
+  $browser librewolf --new-window about:blank
+  $private-browser librewolf --private-window
 }
 
 smart_gaps off
