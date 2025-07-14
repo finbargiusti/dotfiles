@@ -75,3 +75,4 @@ fish_add_path ~/.local/bin
 if string match $(tty) "/dev/tty1"
   exec sway
 end
+alias dwt "swaymsg input type:touchpad dwt"
