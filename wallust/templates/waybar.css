@@ -1,9 +1,9 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: RobotoMono Nerd Font;
+  font-family: FiraCodeNerdFont Mono;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 window#waybar {
@@ -19,7 +19,7 @@ window#waybar.hidden {
 #workspaces button {
   padding: 0px 8px 2px 8px;
   color: {{ foreground }};
-  background-color: {{ background }};
+  background-color: {{ background | darken(0.3) }};
   border-radius: 8px;
   min-width: 32px;
   margin-top: 16px;
@@ -27,7 +27,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.focused {
-  background-color: {{ color3 }};
+  background-color: {{ color3 | darken(0.2) }};  
   color: {{ foreground }};
   border-bottom: none;
 }
@@ -65,15 +65,15 @@ widget > * {
 }
 
 .modules-right > widget:nth-child(3n+1) > * { 
-  background-color: {{ color2 }};
+  background-color: {{ color2 | darken(0.2) }};
 }
 
 .modules-right > widget:nth-child(3n+2) > * { 
-  background-color: {{ color3 }};
+  background-color: {{ color3 | darken(0.2) }};
 }
 
 .modules-right > widget:nth-child(3n+3) > * { 
-  background-color: {{ color4 }};
+  background-color: {{ color4 | darken(0.2) }};
 }
 
 .modules-right > widget:first-child > * {
@@ -105,7 +105,7 @@ widget > * {
 }
 
 #battery {
-  padding-right: 32px;
+  /* padding-right: 32px; */
 }
 
 label:focus {
