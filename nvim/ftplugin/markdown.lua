@@ -58,7 +58,7 @@ vim.keymap.set('i', '<A-Enter>', function()
   local number_match = line:match('^%s*(%d+)%.')
   if number_match then
     -- If the line starts with a numbered list, add a new item
-    local next_number = tonumber(numbr_match) + 1
+    local next_number = tonumber(number_match) + 1
     vim.cmd [[ stopinsert ]]
     local input = 'o' .. next_number .. '. '
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(input, true, false, true), 'n', true)
