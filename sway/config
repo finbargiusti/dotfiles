@@ -28,8 +28,8 @@ smart_gaps off
 #
 set $term kitty
 
-default_border pixel 2
-default_floating_border pixel 2
+default_border pixel 1
+default_floating_border pixel 1
 
 output eDP-1 {
   mode --custom 1920x1080@60Hz
@@ -39,16 +39,16 @@ bindsym $mod+Shift+F7 exec swaymsg "output eDP-1 mode --custom 1920x1080@60Hz"
 bindsym $mod+Shift+F8 exec swaymsg "output eDP-1 mode 3840x2160@60Hz"
 
 input {
+  type:keyboard {
+    xkb_layout gb
+    xkb_options caps:escape
+  }
+
   type:touchpad {
     tap enabled
     natural_scroll enabled
     middle_emulation enabled
     dwt enabled
-  }
-
-  type:keyboard {
-    xkb_options caps:escape
-    xkb_layout gb
   }
 
   type:touch {
@@ -59,7 +59,7 @@ input {
 #
 # Load Xresources
 #
-exec_always xrdb -load ~/.Xresources
+#exec_always xrdb -load ~/.Xresources
 
 ### Key bindings
 #
@@ -79,14 +79,13 @@ bindsym {
 #
 # Multimedia:
 #
-bindsym --locked {
+bindsym {
   XF86MonBrightnessUp exec light -A 5
   XF86MonBrightnessDown exec light -U 5
-
   XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
   XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
   XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-  XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+  # XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
   $mod+XF86AudioMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
   XF86AudioPlay exec playerctl play-pause
@@ -225,10 +224,6 @@ bindsym --to-code $mod+Shift+a exec $action-picker
 set $locksleep 'systemctl suspend; swaylock'
 
 bindswitch --reload --locked lid:on exec $locksleep
-
-blur enable
-blur_radius 2
-blur_brightness 0.8 
 
 include /etc/sway/config.d/*
 include ~/.config/sway/theme.conf
