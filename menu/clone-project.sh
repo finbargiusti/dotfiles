@@ -3,7 +3,7 @@
 PROJECT_DIR=~/Projects
 
 REPO_URL=$(
-  ~/.config/menu/lib/menu.sh -c -w 700 -p "REPO URL" \
+  ~/.config/menu/lib/menu.sh -c -w 700 -p "REPO URL" <&-
 ) || exit 1
 
 
