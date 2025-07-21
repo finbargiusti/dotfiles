@@ -1,5 +1,5 @@
 configuration {
-  modi: "drun,run,ssh,filebrowser,powermenu:~/.config/rofi/powermenu.lua";
+  modi: "drun";
   
   me-accept-entry: "MousePrimary";
   me-select-entry: "";
@@ -16,10 +16,6 @@ configuration {
   disable-history: false;
 
   display-drun: "󱓞 Apps";
-  display-run: " Run";
-  display-ssh: "󰀂 SSH";
-  display-filebrowser: " Files";
-  display-powermenu: " Power";
 
   combi-modi: "drun,run";
   sort: true;
