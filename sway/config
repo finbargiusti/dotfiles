@@ -22,6 +22,7 @@ set {
 }
 
 smart_gaps off
+smart_borders on
 
 #
 # Terminal:
