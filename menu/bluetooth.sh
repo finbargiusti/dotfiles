@@ -32,7 +32,7 @@ MENU_ITEMS=$(
 )
 
 SELECTION=$(
-  ~/.config/menu/lib/menu.sh -c -l 8 -p "Select Bluetooth device" -w 100 <<< "$MENU_ITEMS" 
+  ~/.config/menu/lib/menu.sh -c -l 2 -p "SELECT ACTION" -w 100 <<< "$MENU_ITEMS" 
 ) || exit 1
 
 # this is fine as i expect no duplicates. Too bad!
