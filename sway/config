@@ -32,10 +32,6 @@ set $term kitty
 default_border pixel 1
 default_floating_border pixel 1
 
-output eDP-1 {
-  mode --custom 1920x1080@60Hz
-}
-
 bindsym $mod+Shift+F7 exec swaymsg "output eDP-1 mode --custom 1920x1080@60Hz"
 bindsym $mod+Shift+F8 exec swaymsg "output eDP-1 mode 3840x2160@60Hz"
 
@@ -107,6 +103,9 @@ bindsym {
 # Change normal to inverse to use left mouse button for resizing and right
 # mouse button for dragging.
 floating_modifier $mod normal
+
+bindsym $mod+r exec swaymsg "floating_modifier $mod inverse"
+bindsym $mod+Shift+r exec swaymsg "floating_modifier $mod normal"
 
 #
 # Window controls:
