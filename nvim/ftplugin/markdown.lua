@@ -10,9 +10,13 @@ if vim.fn.expand('%:p'):find(home, 1, true) == nil then
   return {}
 end
 
+-- disable swap for this buffer
+
+vim.opt_local.swapfile = false
+
 vim.keymap.set('n', '<CR>', function()
   local link_pattern = '%[%[[%w%s/_-]+%]%]'
-  -- check if the cursor is on a link
+
   local line = vim.api.nvim_get_current_line()
   local col = vim.api.nvim_win_get_cursor(0)[2] + 1
   local match_start, match_end = line:find(link_pattern, 1)
@@ -78,3 +82,7 @@ end, { desc = 'New Item' })
 
 -- disable copilot (don't need it)
 vim.cmd [[ Copilot disable ]]
+
+-- set line breaks to spaces only
+
+vim.opt.linebreak = true
