@@ -1,13 +1,14 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: FiraCodeNerdFont Mono;
+  font-family: Hasklug Nerd Font Mono;
   font-size: 20px;
   font-weight: 400;
 }
 
 window#waybar {
-  background-color: transparent;
+  /* border-bottom: 4px solid {{ color3 | darken(0.2) }}; */
+  background-color: rgba({{ background | darken(0.3) | rgb }}, {{ alpha / 100 }});
   color: {{ color3 }};
 }
 
@@ -17,13 +18,13 @@ window#waybar.hidden {
 
 
 #workspaces button {
-  padding: 0px 8px 2px 8px;
+  padding: 0px 0px 2px 0px;
   color: {{ foreground }};
-  background-color: {{ background | darken(0.3) }};
-  border-radius: 8px;
+  background-color: transparent;
+  border-radius: 0;
   min-width: 32px;
-  margin-top: 16px;
-  margin-left: 16px;
+  margin-top: 0;
+  margin-left: 0;
 }
 
 #workspaces button.focused {
@@ -54,7 +55,8 @@ widget > * {
 }
 
 .modules-right {
-  padding-top: 16px;
+  padding-top: 0px;
+  /* border-bottom: 4px solid {{ color3 | darken(0.2) }}; */
 }
 
 .modules-right > widget > * {
@@ -74,15 +76,6 @@ widget > * {
 
 .modules-right > widget:nth-child(3n+3) > * { 
   background-color: {{ color4 | darken(0.2) }};
-}
-
-.modules-right > widget:first-child > * {
-  border-radius: 8px 0 0 8px;
-}
-
-.modules-right > widget:last-child > * {
-  border-radius: 0 8px 8px 0;
-  margin-right: 16px;
 }
 
 #mode {
