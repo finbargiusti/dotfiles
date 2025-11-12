@@ -9,3 +9,4 @@ waybar/random.css
 fish/fish_variables
 ncspot/userstate.cbor
 menu/lib/random-menu.sh
+nvim/lazy-lock.json
